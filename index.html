@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MarTech Training Test Page</title>
+
+  <!-- Microsoft Clarity tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/YOUR-CLARITY-ID";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "YOUR-CLARITY-ID");
+  </script>
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+    h1 { margin: 0 0 12px; }
+    .card { border: 1px solid #eee; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .meta { color: #666; font-size: 14px; margin: 8px 0 24px; }
+    button, a.btn {
+      display: inline-block; padding: 12px 18px; border-radius: 10px; border: 0; cursor: pointer;
+      background: #0a66c2; color: white; font-weight: 600; text-decoration: none;
+    }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pill { background:#f3f4f6; padding:6px 10px; border-radius:999px; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>MarTech Training – Landing</h1>
+      <div class="meta">
+        This page is wired to Microsoft Clarity. Page views, scroll, and clicks are tracked.
+      </div>
+
+      <div class="row" style="margin-bottom:16px;">
+        <div class="pill">Lead ID: <span id="leadId">unknown</span></div>
+        <div class="pill">Campaign: <span id="campaignId">n/a</span></div>
+      </div>
+
+      <p>Click the button below to simulate “Demo Page clicked”. Clarity will record this button click.</p>
+
+      <button id="demoBtn" type="button">View Demo</button>
+
+      <!-- Optional: a real demo link; Clarity will track this click too -->
+      <!-- <a class="btn" id="realDemoLink" href="https://example.com/demo" target="_blank" rel="noopener">Open Real Demo</a> -->
+
+      <hr style="margin:28px 0;">
+      <p style="color:#555; font-size:14px;">
+        Tip: Your Salesforce email link should include <code>?lid=...</code> (and optionally <code>&campaignid=...</code>)
+        so you can join Clarity events back to Salesforce later.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Read query params like ?lid=CUST-0001&campaignid=701xx...
+    const params = new URLSearchParams(window.location.search);
+    const lid = params.get('lid') || 'unknown';
+    const cid = params.get('campaignid') || 'n/a';
+    document.getElementById('leadId').textContent = lid;
+    document.getElementById('campaignId').textContent = cid;
+
+    // (Optional) If you want the demo button to also navigate somewhere:
+    // document.getElementById('demoBtn').addEventListener('click', () => {
+    //   window.location.href = 'https://example.com/demo?lid=' + encodeURIComponent(lid);
+    // });
+  </script>
+</body>
+</html>
